@@ -10,6 +10,7 @@ class Employee(models.Model):
 
 class Feedback(models.Model):
     name = models.ForeignKey(Employee)
-    timeframe = models.DateField(auto_now=False)
+    timeframe_start = models.DateField(auto_now=False)
+    timeframe_stop = models.DateField(auto_now=False, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     feedback = models.TextField(blank = False, null = False)
