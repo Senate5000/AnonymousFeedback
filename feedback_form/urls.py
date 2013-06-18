@@ -5,5 +5,7 @@ from django.conf.urls import *
 '''
 
 urlpatterns = patterns('',
-    (r'^$', 'feedback_form.views.enter_feedback'),
+    (r'view_feedback', 'feedback_form.views.view_feedback'),
+    (r'feedback', 'feedback_form.views.enter_feedback'),
+    (r'new_employee', 'feedback_form.views.new_employee'),
    )

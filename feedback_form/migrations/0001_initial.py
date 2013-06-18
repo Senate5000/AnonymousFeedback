@@ -19,6 +19,9 @@ class Migration(SchemaMigration):
         db.create_table(u'feedback_form_feedback', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['feedback_form.Employee'])),
+            ('timeframe_start', self.gf('django.db.models.fields.DateField')()),
+            ('timeframe_stop', self.gf('django.db.models.fields.DateField')(null=True, blank=True)),
+            ('timestamp', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('feedback', self.gf('django.db.models.fields.TextField')()),
         ))
         db.send_create_signal(u'feedback_form', ['Feedback'])
@@ -42,7 +45,10 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Feedback'},
             'feedback': ('django.db.models.fields.TextField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['feedback_form.Employee']"})
+            'name': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['feedback_form.Employee']"}),
+            'timeframe_start': ('django.db.models.fields.DateField', [], {}),
+            'timeframe_stop': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
+            'timestamp': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'})
         }
     }
 
