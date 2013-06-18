@@ -1,0 +1,36 @@
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<select name="employees" id="employeeSelect">
+    <option value = "none">--</option>
+    {% for employee in employees %}
+        <option value="{{employee.name}}">{{employee.name}}</option>
+    {% endfor %}
+</select>
+<br />
+<div id="feedbackContainer">
+    {% for i in feedback %}
+        <div class = '{{i.name}}' style = 'display: none'>
+            {{i.name}}<br />
+            {{i.timeframe_start}}<br />
+            {{i.timeframe_end}}<br />
+            {{i.timestamp}}<br />
+            {{i.feedback}}<br />
+        </div>
+    {% endfor %}
+</div>
+<script>
+$('#employeeSelect').change(function(){
+    var selectedEmployee = $('#employeeSelect').val()
+    console.log(selectedEmployee)
+    $('#feedbackContainer div').each(function(i){
+        if($(this).attr('class')==selectedEmployee){
+            $(this).css('display', 'block');
+        }else{
+            $(this).css('display', 'none');
+        };
+        console.log($(this).attr('class'));
+    });
+    //$('.'+selectedEmployee).css('display', 'block');
+});
+</script>

@@ -6,10 +6,12 @@
     {% csrf_token %}
     {{form.name.label}}: {{form.name}}<br />
     <input type = 'radio' class = 'datePicker' name = 'timeFrameSelection' value = 'Date' checked> Date
-    <input type = 'radio' class = 'datePicker' name = 'timeFrameSelection' value = 'Range' style = 'visibility: visible'> Range<br />
+    <input type = 'radio' class = 'datePicker' name = 'timeFrameSelection' value = 'Range'> Range<br />
     {{form.timeframe_start.label}}: {{form.timeframe_start}}<br />
-    <label id='id_timeframe_stop_label' style='visibility: hidden'>End Time:</label><input id="id_timeframe_stop" class="hasDatepicker" type="text" name="timeframe_stop" style="visibility: hidden;"><br />
-    {{form.feedback.label}}: {{form.feedback}}<br />
+    <label id='id_timeframe_stop_label' style='display: none'>End Time:</label><input id="id_timeframe_stop" type="text" name="timeframe_stop" style="display: none;">
+    <span style = 'display: block'>
+    {{form.feedback.label}}: {{form.feedback}}
+    </span>
     <input type="submit" value="Submit"/>
 </form>
 <script>
@@ -21,12 +23,12 @@ $('.datePicker').change(function(){
     var radioSelected = $('input[name=timeFrameSelection]:checked', '#feedbackForm').val();
     console.log(radioSelected);
     if(radioSelected == 'Date'){
-        $('#id_timeframe_stop').css('visibility', 'hidden');
-        $('#id_timeframe_stop_label').css('visibility', 'hidden')
+        $('#id_timeframe_stop').css('display', 'none');
+        $('#id_timeframe_stop_label').css('display', 'none')
     }
     else if(radioSelected == 'Range'){
-        $('#id_timeframe_stop').css('visibility', 'visible');
-        $('#id_timeframe_stop_label').css('visibility', 'visible')
+        $('#id_timeframe_stop').css('display', 'inline');
+        $('#id_timeframe_stop_label').css('display', 'inline')
     };
 });
 var radioSelected = $('input[name=timeFrameSelection]:checked', '#feedbackForm').val();
