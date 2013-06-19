@@ -1,7 +1,16 @@
-<form action="" method="post" enctype="multipart/form-data" id="feedbackForm">
-    {% csrf_token %}
-<table>
-    {{form.as_table}}
-</table>
-<input type="submit" value="Submit"/>
-</form>
+<style type='text/css'>
+#container{
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
+<div id='container'>
+	<form action="" method="post" enctype="multipart/form-data" id="feedbackForm">
+	    {% csrf_token %}
+	<table>
+	    {{form.as_table}}
+	</table>
+	<input type="submit" value="Submit"/>
+	</form>
+</div>

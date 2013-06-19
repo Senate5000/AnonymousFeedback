@@ -1,7 +1,34 @@
 <style type = "text/css">
+
+    #container{
+        display: block;
+        width: 450px;
+        margin: auto;
+    }
     #feedbackContainer div{
         display: inline-block;
         margin: 10px;
+        vertical-align: top;
+    }
+    .infoLabel{
+        vertical-align: top;
+        width: 150px;
+    }
+
+    #infospan-top{
+        border-top: solid thin black;
+    }
+
+    .infospan{
+        border-left: solid thin black;
+        border-right: solid thin black;
+        border-bottom: solid thin black;
+        width: 250px;
+    }
+
+    .infospan, .infoLabel{
+        display: inline-block;
+        padding: 5px;
     }
 
 
@@ -10,22 +37,24 @@
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
-<select name="employees" id="employeeSelect">
-    <option value = "none">--</option>
-    {% for employee in employees %}
-        <option value="{{employee.name}}">{{employee.name}}</option>
-    {% endfor %}
-</select>
-<br />
-<div id="feedbackContainer">
-    {% for i in feedback %}
-        <div class = '{{i.name}}' style = 'display: none'>
-            Employee Name: <span class='infospan'>{{i.name}}</span><br />
-            Date Range: <span class='infospan'>{{i.timeframe_start}} - {{i.timeframe_stop}}</span><br />
-            Time Submitted: <span class='infospan'>{{i.timestamp}}</span><br />
-            Feedback: <span class='infospan'>{{i.feedback|linebreaks}}</span><br />
-        </div>
-    {% endfor %}
+<div id="container">
+    <select name="employees" id="employeeSelect">
+        <option value = "none">--</option>
+        {% for employee in employees %}
+            <option value="{{employee.name}}">{{employee.name}}</option>
+        {% endfor %}
+    </select>
+    <br />
+    <div id="feedbackContainer">
+        {% for i in feedback %}
+            <div class = '{{i.name}}' style = 'display: none'>
+                <span class = 'infoLabel'>Employee Name:</span> <span class='infospan' id='infospan-top'>{{i.name}}</span><br />
+                <span class = 'infoLabel'>Date Range:</span> <span class='infospan'>{{i.timeframe_start}} - {{i.timeframe_stop}}</span><br />
+                <span class = 'infoLabel'>Time Submitted:</span> <span class='infospan'>{{i.timestamp}}</span><br />
+                <span class = 'infoLabel'>Feedback:</span> <span class='infospan'>{{i.feedback|linebreaksbr}}</span><br />
+            </div>
+        {% endfor %}
+    </div>
 </div>
 <script>
 $('#employeeSelect').change(function(){
