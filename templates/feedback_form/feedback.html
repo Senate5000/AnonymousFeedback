@@ -1,19 +1,30 @@
+<style type = "text/css">
+    label, input{
+        display: inline-block;
+        vertical-align: top;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        width: 200px;
+    }
+
+</style>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-
+<div id = "container">
 <form action="" method="post" enctype="multipart/form-data" id="feedbackForm">
     {% csrf_token %}
-    {{form.name.label}}: {{form.name}}<br />
+    <label class='leftlabel'>{{form.name.label}}:</label> {{form.name}}<br />
     <input type = 'radio' class = 'datePicker' name = 'timeFrameSelection' value = 'Date' checked> Date
     <input type = 'radio' class = 'datePicker' name = 'timeFrameSelection' value = 'Range'> Range<br />
-    {{form.timeframe_start.label}}: {{form.timeframe_start}}<br />
-    <label id='id_timeframe_stop_label' style='display: none'>End Time:</label><input id="id_timeframe_stop" type="text" name="timeframe_stop" style="display: none;">
+    <label>{{form.timeframe_start.label}}:</label> {{form.timeframe_start}}<br />
+    <label id='id_timeframe_stop_label' style='display: none; width: 200px; margin-bottom: 5px; margin-right: 5px; vertical-align: top'>End Time:</label><input id="id_timeframe_stop" type="text" name="timeframe_stop" style='display: none; width: 200px; margin-bottom: 5px; margin-right: 5px; vertical-align: top'>
     <span style = 'display: block'>
-    {{form.feedback.label}}: {{form.feedback}}
+    <label>{{form.feedback.label}}:</label> {{form.feedback}}
     </span>
     <input type="submit" value="Submit"/>
 </form>
+</div>
 <script>
 $(function(){
     $('#id_timeframe_start').datepicker();
@@ -27,8 +38,8 @@ $('.datePicker').change(function(){
         $('#id_timeframe_stop_label').css('display', 'none')
     }
     else if(radioSelected == 'Range'){
-        $('#id_timeframe_stop').css('display', 'inline');
-        $('#id_timeframe_stop_label').css('display', 'inline')
+        $('#id_timeframe_stop').css('display', 'inline-block');
+        $('#id_timeframe_stop_label').css('display', 'inline-block')
     };
 });
 var radioSelected = $('input[name=timeFrameSelection]:checked', '#feedbackForm').val();

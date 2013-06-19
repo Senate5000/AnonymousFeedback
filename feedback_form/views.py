@@ -38,7 +38,7 @@ def new_employee(request):
 
     return render_to_response('feedback_form/new_employee.html', {'form': form}, context_instance=RequestContext(request))
 
-@permission_required('feedback_form.can_delete_feedback', login_url='/loginpage/')
+@permission_required('feedback_form.can_delete_feedback', login_url='/admin/')
 def view_feedback(request):
     feedback = Feedback.objects.all()
     employees = Employee.objects.all()

@@ -1,3 +1,12 @@
+<style type = "text/css">
+    #feedbackContainer div{
+        display: inline-block;
+        margin: 10px;
+    }
+
+
+</style>
+
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
@@ -11,11 +20,10 @@
 <div id="feedbackContainer">
     {% for i in feedback %}
         <div class = '{{i.name}}' style = 'display: none'>
-            {{i.name}}<br />
-            {{i.timeframe_start}}<br />
-            {{i.timeframe_end}}<br />
-            {{i.timestamp}}<br />
-            {{i.feedback}}<br />
+            Employee Name: <span class='infospan'>{{i.name}}</span><br />
+            Date Range: <span class='infospan'>{{i.timeframe_start}} - {{i.timeframe_stop}}</span><br />
+            Time Submitted: <span class='infospan'>{{i.timestamp}}</span><br />
+            Feedback: <span class='infospan'>{{i.feedback|linebreaks}}</span><br />
         </div>
     {% endfor %}
 </div>
