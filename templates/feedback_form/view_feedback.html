@@ -2,28 +2,27 @@
 
     #container{
         display: block;
-        width: 450px;
+        width: 600px;
         margin: auto;
     }
-    #feedbackContainer div{
-        display: inline-block;
-        margin: 10px;
+    .feedbackContainer{
+        box-shadow: 2px 2px 2px #888888;
+        margin-bottom: 25px;
+    }
+    .feedbackContainer div{
+        padding: 10px;
         vertical-align: top;
+        border: solid thin black;
     }
     .infoLabel{
         vertical-align: top;
         width: 150px;
-    }
-
-    #infospan-top{
-        border-top: solid thin black;
+        position: relative;
+        left: 40px;
     }
 
     .infospan{
-        border-left: solid thin black;
-        border-right: solid thin black;
-        border-bottom: solid thin black;
-        width: 250px;
+        width: 350px;
     }
 
     .infospan, .infoLabel{
@@ -44,26 +43,24 @@
             <option value="{{employee.name}}">{{employee.name}}</option>
         {% endfor %}
     </select>
-    <br />
-    <div id="feedbackContainer">
-        {% for i in feedback %}
+    <br /><br />
+    {% for i in feedback %}
+    <div class="feedbackContainer">
             <div class = '{{i.name}}' style = 'display: none'>
-                <span class = 'infoLabel'>Employee Name:</span> <span class='infospan' id='infospan-top'>{{i.name}}</span><br />
-                <span class = 'infoLabel'>Date Range:</span> <span class='infospan'>{{i.timeframe_start}} - {{i.timeframe_stop}}</span><br />
-                <span class = 'infoLabel'>Time Submitted:</span> <span class='infospan'>{{i.timestamp}}</span><br />
-                <span class = 'infoLabel'>Feedback:</span> <span class='infospan'>{{i.feedback|linebreaksbr}}</span><br />
+                <span class = 'infoLabel' id ="top">Date:</span> <span class='infospan' id="top">{{i.timeframe_start}}{% if i.timeframe_stop %} - {{i.timeframe_stop}}{% endif %} ({{i.timestamp}})</span><br />
+                <span class = 'infoLabel' id="bottom">Feedback:</span> <span class='infospan' id="bottom">{{i.feedback|linebreaksbr}}</span><br />
             </div>
-        {% endfor %}
     </div>
+    {% endfor %}
 </div>
 <script>
 $('#employeeSelect').change(function(){
     var selectedEmployee = $('#employeeSelect').val()
     console.log(selectedEmployee)
-    $('#feedbackContainer div').each(function(i){
+    $('#container div').each(function(i){
         if($(this).attr('class')==selectedEmployee){
             $(this).css('display', 'block');
-        }else{
+        }else if($(this).attr('class')!='feedbackContainer'){
             $(this).css('display', 'none');
         };
         console.log($(this).attr('class'));

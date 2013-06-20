@@ -10,6 +10,8 @@ class Employee(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        ordering = ['name']
 
 class Feedback(models.Model):
     name = models.ForeignKey(Employee)
@@ -20,3 +22,4 @@ class Feedback(models.Model):
 
     def __unicode__(self):
         return smart_unicode(self.id)
+
