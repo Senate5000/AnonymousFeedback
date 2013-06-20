@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <style type = "text/css">
+        #container{
+            display: block;
+            width: 600px;
+            margin: auto;
+            padding: 10px;
+            vertical-align: top;
+            border: solid thin black;
+            box-shadow: 2px 2px 2px #888888;
+        }
+
+        label{
+            width: 200px;
+        }
+
+        label, input{
+            display: inline-block;
+            vertical-align: top;
+            margin-bottom: 5px;
+            margin-right: 5px;
+        }
+
+        .feedbackContainer{
+            box-shadow: 2px 2px 2px #888888;
+            margin-bottom: 25px;
+        }
+        .feedbackContainer div{
+            padding: 10px;
+            vertical-align: top;
+            border: solid thin black;
+        }
+        .infoLabel{
+            vertical-align: top;
+            width: 130px;
+            position: relative;
+            left: 20px;
+        }
+
+        .infospan{
+            width: 400px;
+        }
+
+        .infospan, .infoLabel{
+            display: inline-block;
+            padding: 5px;
+        }
+
+    </style>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+</head>
+<body>
+    <script src="/static/scripts/jquery-1.9.1.js"></script>
+<script src="/static/scripts/jquery-ui-v1.10.3.js"></script>
+
+    {% block bodyblock %}
+    {% endblock %}
+</body>
+</html>

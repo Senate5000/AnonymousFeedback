@@ -1,25 +1,7 @@
-<style type = "text/css">
-    #container{
-        display: block;
-        width: 600px;
-        margin: auto;
-        padding: 10px;
-        vertical-align: top;
-        border: solid thin black;
-        box-shadow: 2px 2px 2px #888888;
-    }
-
-    label, input{
-        display: inline-block;
-        vertical-align: top;
-        margin-bottom: 5px;
-        margin-right: 5px;
-        width: 200px;
-    }
-
-</style>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+{% extends 'base.html' %}
+{% block bodyblock %}
+<script src="/static/scripts/jquery-1.9.1.js"></script>
+<script src="/static/scripts/jquery-ui-v1.10.3.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <div id = "container">
     <form action="" method="post" enctype="multipart/form-data" id="feedbackForm">
@@ -27,9 +9,9 @@
         <label class='leftlabel'>{{form.name.label}}:</label> {{form.name}}<br />
         <input type = 'radio' class = 'datePicker' name = 'timeFrameSelection' value = 'Date' checked> Date
         <input type = 'radio' class = 'datePicker' name = 'timeFrameSelection' value = 'Range'> Range<br />
-        <label>{{form.timeframe_start.label}}:</label> {{form.timeframe_start}}<br />
-        <label id='id_timeframe_stop_label' style='display: none; width: 200px; margin-bottom: 5px; margin-right: 5px; vertical-align: top'>End Time:</label>
-        <input id="id_timeframe_stop" type="text" name="timeframe_stop" style='display: none; width: 200px; margin-bottom: 5px; margin-right: 5px; vertical-align: top'>
+        <label id='id_timeframe_start_label'>Date:</label> {{form.timeframe_start}}<br />
+        <label id='id_timeframe_stop_label' style='display: none; width: 200px; margin-bottom: 5px; margin-right: 5px; vertical-align: top'>Range End:</label>
+        <input id="id_timeframe_stop" type="text" name="timeframe_stop" style='display: none; margin-bottom: 5px; margin-right: 5px; vertical-align: top'>
         <span style = 'display: block'>
         <label>{{form.feedback.label}}:</label> {{form.feedback}}
         </span>
@@ -47,12 +29,15 @@ $('.datePicker').change(function(){
     if(radioSelected == 'Date'){
         $('#id_timeframe_stop').css('display', 'none');
         $('#id_timeframe_stop_label').css('display', 'none')
+        $('#id_timeframe_start_label').text('Date')
     }
     else if(radioSelected == 'Range'){
         $('#id_timeframe_stop').css('display', 'inline-block');
         $('#id_timeframe_stop_label').css('display', 'inline-block')
+        $('#id_timeframe_start_label').text('Range Start')
     };
 });
 var radioSelected = $('input[name=timeFrameSelection]:checked', '#feedbackForm').val();
 console.log(radioSelected);
 </script>
+{% endblock %}

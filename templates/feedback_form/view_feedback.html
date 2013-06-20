@@ -1,40 +1,5 @@
-<style type = "text/css">
-
-    #container{
-        display: block;
-        width: 600px;
-        margin: auto;
-    }
-    .feedbackContainer{
-        box-shadow: 2px 2px 2px #888888;
-        margin-bottom: 25px;
-    }
-    .feedbackContainer div{
-        padding: 10px;
-        vertical-align: top;
-        border: solid thin black;
-    }
-    .infoLabel{
-        vertical-align: top;
-        width: 150px;
-        position: relative;
-        left: 40px;
-    }
-
-    .infospan{
-        width: 350px;
-    }
-
-    .infospan, .infoLabel{
-        display: inline-block;
-        padding: 5px;
-    }
-
-
-</style>
-
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+{% extends 'base.html' %}
+{% block bodyblock %}
 
 <div id="container">
     <select name="employees" id="employeeSelect">
@@ -68,3 +33,4 @@ $('#employeeSelect').change(function(){
     //$('.'+selectedEmployee).css('display', 'block');
 });
 </script>
+{% endblock %}
